@@ -16,7 +16,7 @@ jobs:
         mkdir -p ~/midterm
         echo "${{ secrets.SSH_KEY }}" > ~/midterm/awsLab.pem
         chmod 600 ~/midterm/awsLab.pem
-        ssh -o StrictHostKeyChecking=no -i ~/midterm/awsLab.pem ubuntu@<EC2_1_IP> << EOF
+        ssh -o StrictHostKeyChecking=no ssh -i "awsLab.pem" ubuntu@ec2-54-209-97-163.compute-1.amazonaws.com << EOF
         sudo docker stop cicd_m || true
         sudo docker rm cicd_m || true
         sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
@@ -32,7 +32,7 @@ jobs:
         mkdir ~/midterm/awsLab.pem
         echo "${{ secrets.SSH_KEY2 }}" > ~/midterm/awsLab.pem
         chmod 600 ~/midterm/awsLab.pem
-        ssh -o StrictHostKeyChecking=no -i ~/midterm/awsLab.pem ubuntu@<EC2_2_IP> << EOF
+        ssh -o StrictHostKeyChecking=no -i ssh -i "awsLab.pem" ubuntu@ec2-98-81-184-25.compute-1.amazonaws.com << EOF
         sudo docker stop cicd_m || true
         sudo docker rm cicd_m || true
         sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
