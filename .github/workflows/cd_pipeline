@@ -30,7 +30,7 @@ jobs:
     - name: Deploy to EC2-2
       run: |
         mkdir ~/midterm/awsLab.pem
-        echo "${{ secrets.SSH_SECOND }}" > ~/midterm/awsLab.pem
+        echo "${{ secrets.SSH_KEY2 }}" > ~/midterm/awsLab.pem
         chmod 600 ~/midterm/awsLab.pem
         ssh -o StrictHostKeyChecking=no -i ~/midterm/awsLab.pem ubuntu@<EC2_2_IP> << EOF
         sudo docker stop cicd_m || true
