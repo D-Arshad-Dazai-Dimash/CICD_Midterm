@@ -35,10 +35,10 @@ jobs:
         chmod 600 ~/.ssh/keyToEC2
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/keyToEC2 ubuntu@<EC2_1_IP> 
         
-        sudo docker stop cicd_m || true
-        sudo docker rm cicd_m || true
-        sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
-        sudo docker run -d --name cicd_m -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
+        # sudo docker stop cicd_m || true
+        # sudo docker rm cicd_m || true
+        # sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
+        # sudo docker run -d --name cicd_m -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
         
   deploy-2:
     runs-on: ubuntu-latest
@@ -51,8 +51,8 @@ jobs:
         chmod 600 ~/.ssh/keyToEC2
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/keyToEC2 ubuntu@<EC2_2_IP> 
         
-        sudo docker stop midterm || true
-        sudo docker rm midterm || true
-        sudo docker pull ${{ secrets.DOCKER_USERNAME }}/midterm:latest
-        sudo docker run -d --name midterm -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/midterm:latest
+        # sudo docker stop cicd_m || true
+        # sudo docker rm cicd_m || true
+        # sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
+        # sudo docker run -d --name midterm -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
    
