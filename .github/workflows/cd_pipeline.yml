@@ -38,3 +38,27 @@
 #         sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
 #         sudo docker run -d --name cicd_m -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/cicd_m:latest
 #         EOF
+
+
+
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Pull Docker image
+      run: sudo docker pull dimash26/cicd_m:latest
+    - name: Delete Old docker container
+      run: sudo docker rm -f cicd-m-container || true
+    - name: Run Docker Container
+      run: sudo docker run -d -p 5000:5000 --name cicd-m-container dimash26/cicd_m
